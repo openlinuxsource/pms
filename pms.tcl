@@ -591,12 +591,12 @@ grid anchor .netstat center
 ############
 
 proc pms {} {
-        loadavg
+	loadavg
 	cpustat
 	meminfo
 	diskstat
 	netstat
-        after 1000 pms
+	after 1000 pms
 }
 
 pms
