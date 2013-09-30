@@ -20,13 +20,13 @@ proc StatusInsert {name now} {
 	}
 
 	if {$now > $old($name)} {
-		puts "$now UP"
+		puts "[clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"] $name $now UP"
 		$name configure -foreground red
 	} elseif {$now == $old($name)} {
-		puts "$now EQUAL"
+		puts "[clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"] $name $now EQUAL"
 		$name configure -foreground blue
 	} else {
-		puts "$now DOWN"
+		puts "[clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"] $name $now DOWN"
 		$name configure -foreground darkgreen
 	}
 
