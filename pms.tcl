@@ -272,7 +272,7 @@ proc diskstat {} {
 	set BlockEntryRemove {}
 	set diskstats [open /proc/diskstats r]
 	while {[gets $diskstats line] >= 0} {
-		if {![regexp -all -lineanchor loop $line]} {
+		if {![regexp -all -lineanchor loop|ram $line]} {
 			set blockname [lindex $line 2]
 			set Block($blockname.new) [dict create rio [lindex $line 3] rmerge [lindex $line 4] rsect [lindex $line 5] ruse [lindex $line 6] wio [lindex $line 7] wmerge [lindex $line 8] wsect [lindex $line 9] wuse [lindex $line 10] running [lindex $line 11] aveq [lindex $line 12] use [lindex $line 13]]
 
