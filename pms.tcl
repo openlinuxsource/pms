@@ -1,7 +1,7 @@
 #!/usr/bin/tclsh
 
 ################
-# version: 0.0.1
+# version: 0.0.2
 ################
 
 package require Tk
@@ -431,8 +431,8 @@ proc netstat {} {
 	gets $netstat
 
 	while {[gets $netstat line] >= 0} {
-		set netname [regsub -all {:} [lindex $line 0] {}]
-		set Net($netname.new) [dict create rxok [lindex $line 2] rxerr [lindex $line 3] rxdrp [lindex $line 4] rxovr [lindex $line 5] txok [lindex $line 10] txerr [lindex $line 11] txdrp [lindex $line 12] txovr [lindex $line 13]]
+		lassign [split $line :] netname mertric
+		set Net($netname.new) [dict create rxok [lindex $mertric 1] rxerr [lindex $mertric 2] rxdrp [lindex $mertric 3] rxovr [lindex $mertric 4] txok [lindex $mertric 9] txerr [lindex $mertric 10] txdrp [lindex $mertric 11] txovr [lindex $mertric 12]]
 		if {![info exists Net($netname.old)]} {
 			set Net($netname.old) [dict create rxok 0 rxerr 0 rxdrp 0 rxovr 0 txok 0 txerr 0 txdrp 0 txovr 0]
 		}
